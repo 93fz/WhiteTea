@@ -1,0 +1,11 @@
+{
+    "name": "whitetea",
+    "version": "1.0.0",
+    "description": "A selfbot that automates Discord's Mudae bot game BlackTea.",
+    "main": "index.js",
+    "author": "thonk",
+    "license": "ISC",
+    "dependencies": {
+        "discord.js-selfbot-v13": "^2.14.5"
+    }
+}
