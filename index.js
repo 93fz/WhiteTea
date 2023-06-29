@@ -29,8 +29,8 @@ client.on('ready', async () => {
             await sleep(rndInt(config.delays.msgSend.min, config.delays.msgSend.max));
 
             (async function sendWord() {
-                let words = words.filter(a => a.search(msg.content.split('**')[1].toLowerCase()) > -1);
-		let word = words[rndInt(0, (words.length-1))];
+                let pickFrom = words.filter(a => a.search(msg.content.split('**')[1].toLowerCase()) > -1);
+		let word = pickFrom[rndInt(0, (pickFrom.length-1))];
                 let sentMsg = await msg.channel.send(word)
 
                 let filter = (reaction, user) => reaction.emoji.name === '✅' && user.id !== '432610292342587392';
