@@ -23,13 +23,14 @@ client.on('ready', async () => {
             msg.react('✅');
             console.log(`☕ | Reacted to new BlackTea message.`);
             return;
-        }
+        };
 
         if (msg.mentions.members.size && (msg.mentions.members.first()?.id === client.user.id) && msg.content.search('Type a word containing:') > -1) {
             await sleep(rndInt(config.delays.msgSend.min, config.delays.msgSend.max));
 
-            (async function t() {
-                let word = words.filter(a => a.search(msg.content.split('**')[1].toLowerCase()) > -1)[10];
+            (async function sendWord() {
+                let words = words.filter(a => a.search(msg.content.split('**')[1].toLowerCase()) > -1);
+		let word = words[rndInt(0, (words.length-1))];
                 let sentMsg = await msg.channel.send(word)
 
                 let filter = (reaction, user) => reaction.emoji.name === '✅' && user.id !== '432610292342587392';
@@ -40,11 +41,11 @@ client.on('ready', async () => {
                   console.log(`☕ | Prompt: ${msg.content.split('**')[1].toLowerCase()} | Sent: ${word}`)
                 });
                     
-                collector.on('end', (collected) => {
-                    if (collected.size < 1) t();
+                collector.on('end', async (collected) => {
+                    if (collected.size < 1) await sendWord();
                 });
             })();
-        }
+        };
     });
 
     if (config.selfStart) {
@@ -57,8 +58,8 @@ client.on('ready', async () => {
 
     if (!config.alreadySent) {
         channel.messages.fetch({
-	    	limit: 100
-	    }).then((messages) => {
+	    limit: 100
+	}).then((messages) => {
             let byMudae = messages.filter(a => a.author.id === '432610292342587392');
             let isBlackteaStart = byMudae.filter(a => a.embeds[0]?.title).filter(a => a.embeds[0].title === 'The Black Teaword will start!');
             isBlackteaStart.first().react('✅');
