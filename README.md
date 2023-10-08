@@ -8,5 +8,5 @@
 
 1. Clone the repo from Git: `git clone https://github.com/VillainsRule/WhiteTea.git && cd WhiteTea`
 2. Install dependencies: `npm i`
-3. Edit values in `config.js`. Add tokens to `tokens.txt`.
+3. Edit values in `config.js`.
 4. Run the program! `node .`
