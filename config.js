@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     hp: '5', // between 1 and 21, if you're starting
     time: '42', // between 3 and 50, if you're starting
     channelId: '', // channel ID to play in
