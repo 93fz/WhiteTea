@@ -25,7 +25,7 @@ client.on('ready', async () => {
     console.log(`> Connected to @${client.user.username}!\n`);
 
     let channel = client.channels.cache.get(config.channelId);
-    let mudaePrefix = config.mudaePrefix;
+    let bleedPrefix = config.bleedPrefix;
 
     client.on('messageCreate', async (msg) => {
         if (msg.author.id !== '432610292342587392') return;
@@ -70,11 +70,11 @@ client.on('ready', async () => {
     });
 
     if (config.selfStart) {
-        channel.send(`${mudaePrefix}blacktea`);
+        channel.send(`${bleedPrefix}blacktea`);
         await sleep(rndInt(config.delays.msgSend.min, config.delays.msgSend.max));
-        channel.send(`${mudaePrefix}hp ${config.hp}`);
+        channel.send(`${bleedPrefix}hp ${config.hp}`);
         await sleep(rndInt(config.delays.msgSend.min, config.delays.msgSend.max));
-        channel.send(`${mudaePrefix}time ${config.time}`);
+        channel.send(`${bleedPrefix}time ${config.time}`);
         console.log(`> Sent the Self-Start mode messages.`);
     };
 
@@ -82,8 +82,8 @@ client.on('ready', async () => {
         channel.messages.fetch({
             limit: 100
         }).then((messages) => {
-            let byMudae = messages.filter(a => a.author.id === '432610292342587392');
-            let isBlackteaStart = byMudae.filter(a => a.embeds[0]?.title).filter(a => a.embeds[0].title === 'The Black Teaword will start!');
+            let byBleed = messages.filter(a => a.author.id === '432610292342587392');
+            let isBlackteaStart = byBleed.filter(a => a.embeds[0]?.title).filter(a => a.embeds[0].title === 'The Black Teaword will start!');
             isBlackteaStart.first().react('✅');
             console.log(`> Reacted to new BlackTea message.`);
         });
