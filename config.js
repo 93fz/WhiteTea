@@ -5,7 +5,7 @@ export default {
     token: '', // token to use
     selfStart: true, // if you should start the game (singleplayer), set to false to play publicly
     alreadySent: false, // set to true if the 'black teaword will start' embed has already been sent
-    mudaePrefix: '$',
+    bleedPrefix: ',',
     delays: { // delays
         msgSend: {
             min: 500, // minimum time in ms
